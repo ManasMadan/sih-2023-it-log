@@ -4,19 +4,19 @@
 
 ## Introduction
 
-The primary objective of this project is to develop a regression-based machine learning model that predicts risk probability for threat detection in an IT log analyzer. By analyzing the provided parameters such as `SourceIP`, `DestinationIP`, `UserID`, `Device`, `EventType`, `EventDescription`, and `EventSeverity`, the model aims to give a numerical assessment of the potential risk associated with an event or activity.
+The primary objective of this project is to develop a regression-based machine learning model that predicts risk probability for threat detection in an IT log analyzer. By analyzing the provided parameters such as SourceIP, DestinationIP, UserID, Device, EventType, EventDescription, and EventSeverity, the model aims to give a numerical assessment of the potential risk associated with an event or activity.
 
 ## Parameters
 
 The model utilizes the following parameters for predicting risk probability:
 
-- _SourceIP_: The source IP address of the event.
-- _DestinationIP_: The destination IP address related to the event.
-- _UserID_: The ID of the user associated with the event.
-- _Device_: The device involved in the event.
-- _EventType_: The type of event that occurred.
-- _EventDescription_: A description of the event.
-- _EventSeverity_: The severity level of the event.
+- SourceIP: The source IP address of the event.
+- DestinationIP: The destination IP address related to the event.
+- UserID: The ID of the user associated with the event.
+- Device: The device involved in the event.
+- EventType: The type of event that occurred.
+- EventDescription: A description of the event.
+- EventSeverity: The severity level of the event.
 
 These parameters are essential in providing relevant information for the model to make accurate predictions regarding the risk associated with a potential threat.
 

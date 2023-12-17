@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# IT System log analyzer admin panel
 
-## Getting Started
+### Tasks Completed
 
-First, run the development server:
+- [x] Interactive charts which makes it easier to analyse the situation.
+- [x] Access to all Data Logs along with their timestamps.
+- [x] Blockchain Model to keep your data Safe and Secure.
+- [x] Export as HTML and send Email
+- [x] Export logs to HTML,CSV
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Next JS](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [NextUI](https://nextui.org/)
+- [Recharts](https://recharts.org/)
+- [Truffle](https://trufflesuite.com/)
+- [Solidity and Blockchain](https://soliditylang.org/)
+- [Ganache](https://trufflesuite.com/ganache/)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Log Analysis
 
-## Learn More
+- _Real-time Analysis:_ The system provides real-time log analysis capabilities, allowing experts to monitor IT system activities as they happen.
+- _Threat Detection:_ Advanced algorithms and machine learning techniques are employed to detect potential threats, anomalies, and security breaches within the IT systems.
+- _Customizable Alerts:_ Experts can configure customizable alerts and notifications based on specific log patterns or security events, ensuring prompt response to potential issues.
 
-To learn more about Next.js, take a look at the following resources:
+### Visualization and Reporting
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- _Data Visualization:_ The system offers interactive data visualization tools, including graphs and charts, to help experts gain insights from log data more effectively.
+- _Detailed Reports:_ Comprehensive reports are generated, summarizing log analysis findings, security incidents.
+- _Role-based Access:_ User roles and permissions are defined to ensure that only authorized personnel can access and modify log data and analysis settings.

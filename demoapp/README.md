@@ -1,4 +1,4 @@
-This website is a simple tool that generates fake logs datato simulate real life scenario. It can be useful for testing, educational purposes, or any scenario where random IP addresses and data logging are needed.
+This website is a simple tool that generates fake logs data to simulate real life scenario. It can be useful for testing, educational purposes, or any scenario where random IP addresses and data logging are needed.
 
 ## Tech Stack
 
@@ -8,8 +8,8 @@ This website is a simple tool that generates fake logs datato simulate real life
 
 ## Key Features
 
-- **Data Logging:** It also logs the generated IP addresses along with any additional data you choose to include, such as timestamps, user agents, or custom messages.
+- _Data Logging:_ It also logs the generated IP addresses along with any additional data you choose to include, such as timestamps, user agents, or custom messages.
 
-- **Custom Data Fields:** You can easily add custom data fields to the log entries. Define your own data categories and include them in the logs as needed.
+- _Custom Data Fields:_ You can easily add custom data fields to the log entries. Define your own data categories and include them in the logs as needed.
 
-- **Timestamps:** Each log entry is automatically timestamped, providing you with a chronological record of the generated data.
+- _Timestamps:_ Each log entry is automatically timestamped, providing you with a chronological record of the generated data.
