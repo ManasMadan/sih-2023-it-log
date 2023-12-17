@@ -23,7 +23,7 @@ export default function page() {
   const [riskVUser, setRiskVUser] = useState([]);
   useEffect(() => {
     const fn = async () => {
-      const response = fetch("http://localhost:5000/admin/ml");
+      const response = fetch("http://localhost:5001/admin/ml");
       response.then(async (r) => {
         const j = await r.json();
         setRiskVDay(j.riskVDay);

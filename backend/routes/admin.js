@@ -147,7 +147,7 @@ router.get("/dashboard", async (req, res) => {
         for (const key in eventSeverityDaily) {
           dayObject[key + "_count"] = eventSeverityDaily[key].find(
             (item) => item.day === day
-          ).count;
+          )?.count;
         }
         resultArray.push(dayObject);
       }

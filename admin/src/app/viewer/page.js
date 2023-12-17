@@ -34,14 +34,14 @@ export default function Page() {
   useEffect(() => {
     if (!unique.length) return;
     const fn = async () => {
-      const res = await fetch("http://localhost:5000/admin/unique/" + unique);
+      const res = await fetch("http://localhost:5001/admin/unique/" + unique);
       setUniqueCount(await res.text());
     };
     fn();
   }, [unique]);
 
   const { data, isLoading } = useSWR(
-    `http://localhost:5000/admin/getLogs?page=${page}&len=10&sortBy=${sortBy}&${search}&sortOrder=${
+    `http://localhost:5001/admin/getLogs?page=${page}&len=10&sortBy=${sortBy}&${search}&sortOrder=${
       sortDirection ? "asc" : "desc"
     }`,
     fetcher,
