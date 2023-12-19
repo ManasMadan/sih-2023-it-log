@@ -61,7 +61,7 @@ const event_description_templates = {
   "melissa-error":
     "Device '{device}' contains Melissa, access revoked for {device}",
   "malware-download-attempt":
-    "User {user} tried downloading file containing {malware}, download revoked",
+    "User {username} tried downloading file containing {malware}, download revoked",
 };
 
 const event_types = [
