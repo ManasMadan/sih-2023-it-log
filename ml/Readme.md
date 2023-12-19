@@ -1,6 +1,6 @@
 # Threat Detection Regression Model
 
-## [Try On Kaggle](https://www.kaggle.com/code/tanxena/threat-detection/notebook)
+## [Try On Kaggle](https://www.kaggle.com/code/tanxena/threat-detection-updated/)
 
 ## Introduction
 
