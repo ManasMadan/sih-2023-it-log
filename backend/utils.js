@@ -1,5 +1,7 @@
 const { DateTime } = require("luxon");
 const data = require("./data");
+const emailjs = require("@emailjs/nodejs");
+
 const processJSONforBigInt = (obj) => {
   return JSON.parse(
     JSON.stringify(obj, (key, value) =>
@@ -64,9 +66,29 @@ const predictMLScore = (logData) => {
   ).toFixed(2);
   return ml_risk_score;
 };
-
-const generateRandomLogs = (number) => {
+const sendEmail = (logs) => {
+  emailjs
+    .send(
+      "service_ybnmn0v",
+      "template_htwcber",
+      { number: logs.length, htmlContent: htmlString2(logs) },
+      {
+        publicKey: "jfboO5uLvrXJSVWvS",
+        privateKey: "MUK0ghcaE9u4pOeLd76nJ",
+      }
+    )
+    .then(
+      function (response) {
+        console.log("SUCCESS!", response.status, response.text);
+      },
+      function (err) {
+        console.log("FAILED...", err);
+      }
+    );
+};
+const generateRandomLogs = (number, campLocation) => {
   const logs = [];
+  const logsForMail = [];
   for (let i = 0; i < number; i++) {
     let rnd = randomElementFromArray([1, 1, 1, 1, 1, 1, 1, 1, 1, 0]);
     let logData = {
@@ -92,6 +114,7 @@ const generateRandomLogs = (number) => {
     };
 
     const ml_risk_score = predictMLScore(logData);
+
     logData = {
       ...logData,
       eventDescription: replaceVariable(
@@ -101,9 +124,13 @@ const generateRandomLogs = (number) => {
       mlRiskScore: ml_risk_score,
     };
     logs.push(logData);
+    if (ml_risk_score == 0.9)
+      logsForMail.push({ ...logData, campLocation: campLocation });
   }
+  sendEmail(logsForMail);
   return logs;
 };
+
 const htmlString = (logs) => {
   const htmlString = `<!DOCTYPE html>
 <html lang="en">
@@ -229,6 +256,126 @@ const htmlString = (logs) => {
       </section>
     </main>
   </body>
+</html>
+`;
+  return htmlString;
+};
+const htmlString2 = (logs) => {
+  const htmlString = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>LogsLens</title>
+  </head>
+  <style>
+    .main2 {
+      background: #ffffff;
+    }
+    main {
+      width: 82vw;
+      height: 90vh;
+      background-color: #37373f;
+      backdrop-filter: blur(7px);
+      box-shadow: 0 0.4rem 0.8rem #0005;
+      border-radius: 0.8rem;
+      overflow: hidden;
+    }
+    #section1 {
+      width: 100%;
+      height: 10%;
+      background-color: #37373f;
+
+      padding: 0.8rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #section2 {
+      width: 95%;
+      max-height: calc(89% - 1.6rem);
+      background-color: #27262b;
+
+      margin: 0.8rem auto;
+      border-radius: 0.6rem;
+      overflow: auto;
+      overflow: overlay;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      padding: 1rem;
+      text-align: left;
+    }
+    th {
+      border-collapse: collapse;
+      padding: 1rem;
+      text-align: left;
+      position: sticky;
+      top: 0;
+      left: 0;
+      background-color: #a6abff;
+      cursor: pointer;
+      text-transform: capitalize;
+    }
+    td {
+      border-collapse: collapse;
+      padding: 1rem;
+      text-align: left;
+            color:#000;
+
+    }
+    tbody tr:nth-child(even) {
+      background-color: #454545;
+    }
+    tbody tr {
+      transition: 0.5s ease-in-out 0.1s, background-color 0s;
+    }
+    
+  </style>
+  <div class="main2">
+    <main>
+      <section id="section1">
+        <h1>Log Lens</h1>
+      </section>
+      <section id="section2">
+        <table>
+          <thead>
+            <tr>
+              <th>Camp Location</th>
+              <th>Timestamp</th>
+              <th>Source</th>
+              <th>Destination</th>
+              <th>User</th>
+              <th>Device</th>
+              <th>Event Type</th>
+              <th>Event Description</th>
+              <th>Event Severity</th>
+              <th>ML Risk Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${logs.map(
+              (log) => `<tr>
+              <td>${log.campLocation}</td>
+              <td>${log.timestamp}</td>
+              <td>${log.source}</td>
+              <td>${log.destination}</td>
+              <td>${log.user}</td>
+              <td>${log.device}</td>
+              <td>${log.eventType}</td>
+              <td>${log.eventDescription}</td>
+              <td>${log.eventSeverity}</td>
+              <td>${log.mlRiskScore}</td>
+            </tr>`
+            )}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
 </html>
 `;
   return htmlString;
