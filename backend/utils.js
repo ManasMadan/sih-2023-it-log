@@ -1,6 +1,7 @@
 const { DateTime } = require("luxon");
 const data = require("./data");
 const emailjs = require("@emailjs/nodejs");
+const fs = require("fs");
 
 const processJSONforBigInt = (obj) => {
   return JSON.parse(
@@ -89,6 +90,7 @@ const sendEmail = (logs) => {
 const generateRandomLogs = (number, campLocation) => {
   const logs = [];
   const logsForMail = [];
+  let content = "";
   for (let i = 0; i < number; i++) {
     let rnd = randomElementFromArray([1, 1, 1, 1, 1, 1, 1, 1, 1, 0]);
     let logData = {
@@ -124,9 +126,18 @@ const generateRandomLogs = (number, campLocation) => {
       mlRiskScore: ml_risk_score,
     };
     logs.push(logData);
-    if (ml_risk_score == 0.9)
+    if (ml_risk_score == 0.9) {
+      content += logData.source + "\n";
       logsForMail.push({ ...logData, campLocation: campLocation });
+    }
   }
+  fs.appendFile(
+    `./${process.env.CENTRAL_LOG_FOLDER}/Blocked_IPS.txt`,
+    content,
+    function (err) {
+      if (err) throw err;
+    }
+  );
   sendEmail(logsForMail);
   return logs;
 };
