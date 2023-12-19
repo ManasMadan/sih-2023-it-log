@@ -208,6 +208,20 @@ router.get("/blocked_ips", async (req, res) => {
     })
     .on("end", () => res.json({ blocked_ips: arr }));
 });
+router.get("/revoked_access", async (req, res) => {
+  const fsStream = fs.createReadStream(
+    `./${process.env.CENTRAL_LOG_FOLDER}/REVOKED_ACCESS.txt`
+  );
+  const csvStream = csv();
+  const arr = [];
+
+  fsStream
+    .pipe(csvStream)
+    .on("data", (data) => {
+      arr.push(data);
+    })
+    .on("end", () => res.json({ revoked_access: arr }));
+});
 router.post("/unblock_ip", async (req, res) => {
   const { ip } = req.body;
   const fsStream = fs.createReadStream(
@@ -223,6 +237,29 @@ router.post("/unblock_ip", async (req, res) => {
     .on("end", () => {
       fs.writeFile(
         `./${process.env.CENTRAL_LOG_FOLDER}/Blocked_IPS.txt`,
+        content,
+        function (err) {
+          if (err) throw err;
+        }
+      );
+      res.send("Success");
+    });
+});
+router.post("/allow_access", async (req, res) => {
+  const { ip } = req.body;
+  const fsStream = fs.createReadStream(
+    `./${process.env.CENTRAL_LOG_FOLDER}/REVOKED_ACCESS.txt`
+  );
+  const csvStream = csv();
+  let content = "log_description\n";
+  fsStream
+    .pipe(csvStream)
+    .on("data", (data) => {
+      if (data.log_description != ip) content += data.log_description + "\n";
+    })
+    .on("end", () => {
+      fs.writeFile(
+        `./${process.env.CENTRAL_LOG_FOLDER}/REVOKED_ACCESS.txt`,
         content,
         function (err) {
           if (err) throw err;

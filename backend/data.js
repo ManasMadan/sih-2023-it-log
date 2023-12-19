@@ -34,11 +34,7 @@ const event_description_templates = {
     "Device '{device}' connected to the network at IP {source_ip}",
   "network-disconnected":
     "Device '{device}' disconnected from the network at IP {source_ip}",
-  "firewall-change":
-    "Firewall rule change: Port {port} opened for IP {source_ip}",
   "dns-queries": "DNS query from IP {source_ip} for domain '{domain}'",
-  "malware-detection":
-    "Malware detected: File '{filename}' found on device '{device}'",
   "system-shutdown": "System shutdown: {reason}",
   "system-restart": "System restart: {reason}",
   "system-failure": "Critical system failure: {error_message}",
@@ -51,7 +47,23 @@ const event_description_templates = {
     "User '{username}' changed permissions for file '{file_path}'",
   "software-update":
     "Software update: {software_name} updated to version {version}",
+
+  "malware-detection":
+    "Malware detected: File '{file_path}' found on device '{device}', access revoked for {device}",
+  "permission-changes":
+    "User '{username}' tried changing permissions for file '{file_path}', access revoked",
+  "firewall-change":
+    "Firewall rule change: Port {port} opened for IP {source_ip}, access revoked",
+  "stuxnet-error":
+    "Device '{device}' contains Stuxnet, access revoked for {device}",
+  "conficker-error":
+    "Device '{device}' contains Conficker, access revoked for {device}",
+  "melissa-error":
+    "Device '{device}' contains Melissa, access revoked for {device}",
+  "malware-download-attempt":
+    "User {user} tried downloading file containing {malware}, download revoked",
 };
+
 const event_types = [
   "auth-failed",
   "auth-failed",
@@ -89,6 +101,13 @@ const event_types = [
   "permission-changes",
   "software-update",
   "software-update",
+  "malware-detection",
+  "permission-changes",
+  "firewall-change",
+  "stuxnet-error",
+  "conficker-error",
+  "melissa-error",
+  "malware-download-attempt",
 ];
 const event_severity = [
   "informational",
@@ -135,7 +154,17 @@ ip_threat = {
   malicious: 0.9,
   safe: 0.1,
 };
+let action = [
+  "malware-detection",
+  "permission-changes",
+  "firewall-change",
+  "stuxnet-error",
+  "conficker-error",
+  "melissa-error",
+  "malware-download-attempt",
+];
 module.exports = {
+  action,
   campLocation,
   event_severity,
   event_types,

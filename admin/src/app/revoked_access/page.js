@@ -15,19 +15,20 @@ export default function page() {
   const [blocked_ips, setBlocked_ips] = useState([]);
   useEffect(() => {
     const fn = async () => {
-      const response = fetch("http://localhost:5001/admin/blocked_ips", {
+      const response = fetch("http://localhost:5001/admin/revoked_access", {
         method: "GET",
         cache: "no-cache",
       });
       response.then(async (r) => {
         const j = await r.json();
-        setBlocked_ips(j.blocked_ips);
+        console.log(j);
+        setBlocked_ips(j.revoked_access);
       });
     };
     fn();
   }, []);
   const unblockIP = async (ip) => {
-    await fetch("http://localhost:5001/admin/unblock_ip", {
+    await fetch("http://localhost:5001/admin/allow_access", {
       method: "POST",
       mode: "cors",
       cache: "no-cache",
@@ -39,23 +40,23 @@ export default function page() {
       referrerPolicy: "no-referrer",
       body: JSON.stringify({ ip }),
     });
-    alert("IP Unblocked");
+    alert("Access Allowed");
     location.reload();
   };
 
   return (
     <Table aria-label="Example table with client async pagination">
       <TableHeader>
-        <TableColumn key="blocked_ips">IP Address</TableColumn>
+        <TableColumn key="blocked_ips">Revoked Access</TableColumn>
         <TableColumn key="actions">Actions</TableColumn>
       </TableHeader>
       <TableBody items={blocked_ips} loadingContent={<Spinner />}>
         {(item) => (
           <TableRow key={Math.random()}>
-            <TableCell>{item.ip_address}</TableCell>
+            <TableCell>{item.log_description}</TableCell>
             <TableCell>
-              <Button onPress={() => unblockIP(item.ip_address)}>
-                Unblock IP
+              <Button onPress={() => unblockIP(item.log_description)}>
+                Allow Access
               </Button>
             </TableCell>
           </TableRow>
