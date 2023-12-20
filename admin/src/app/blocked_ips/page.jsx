@@ -15,10 +15,13 @@ export default function page() {
   const [blocked_ips, setBlocked_ips] = useState([]);
   useEffect(() => {
     const fn = async () => {
-      const response = fetch("http://localhost:5001/admin/blocked_ips", {
-        method: "GET",
-        cache: "no-cache",
-      });
+      const response = fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/blocked_ips`,
+        {
+          method: "GET",
+          cache: "no-cache",
+        }
+      );
       response.then(async (r) => {
         const j = await r.json();
         setBlocked_ips(j.blocked_ips);
@@ -27,7 +30,7 @@ export default function page() {
     fn();
   }, []);
   const unblockIP = async (ip) => {
-    await fetch("http://localhost:5001/admin/unblock_ip", {
+    await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/unblock_ip`, {
       method: "POST",
       mode: "cors",
       cache: "no-cache",

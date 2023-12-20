@@ -29,7 +29,8 @@ export default function Navbar({ navbarOpen, setNavbarOpen }) {
     { title: "All Logs", path: "/viewer" },
     { title: "Log Analysis", path: "/analysis" },
     { title: "Export Logs", path: "/export" },
-    { title: "Blocked IPS", path: "/blocked_ips" },
+    { title: "Blocked IPs", path: "/blocked_ips" },
+    { title: "Revoked Access", path: "/revoked_access" },
   ];
   return (
     <nav

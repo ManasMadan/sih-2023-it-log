@@ -23,7 +23,7 @@ export default function page() {
   const [riskVUser, setRiskVUser] = useState([]);
   useEffect(() => {
     const fn = async () => {
-      const response = fetch("http://localhost:5001/admin/ml");
+      const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/ml`);
       response.then(async (r) => {
         const j = await r.json();
         setRiskVDay(j.riskVDay);
@@ -35,7 +35,7 @@ export default function page() {
   }, []);
 
   return (
-    <section className="w-full h-screen gap-8 flex flex-col items-center gap-2 mb-12">
+    <section className="w-full h-screen gap-8 flex flex-col items-center mb-12">
       <div class="flex flex-col w-full h-1/2 items-center">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart

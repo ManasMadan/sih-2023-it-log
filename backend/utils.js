@@ -78,12 +78,17 @@ const predictMLScore = (logData) => {
   ).toFixed(2);
   return ml_risk_score;
 };
-const sendEmail = (logs, template) => {
+const sendEmail = (logsForMail, logsForBlockedAccess, template) => {
   emailjs
     .send(
       "service_ybnmn0v",
       template,
-      { number: logs.length, htmlContent: htmlString2(logs) },
+      {
+        number: logsForMail.length,
+        number2: logsForBlockedAccess.length,
+        htmlContent: htmlString2(logsForMail),
+        htmlContent2: htmlString2(logsForBlockedAccess),
+      },
       {
         publicKey: "jfboO5uLvrXJSVWvS",
         privateKey: "MUK0ghcaE9u4pOeLd76nJ",
@@ -140,13 +145,13 @@ const generateRandomLogs = (number, campLocation) => {
       mlRiskScore: ml_risk_score,
     };
     logs.push(logData);
-    if (ml_risk_score == 0.9) {
+    if (ml_risk_score >= 0.85 && logsForMail.length <= 50) {
       content += logData.source + "\n";
       logsForMail.push({ ...logData, campLocation: campLocation });
     }
     if (
-      data.action.at(logData.eventType) != -1 &&
-      logsForBlockedAccess.length <= 100
+      data.action.indexOf(logData.eventType) != -1 &&
+      logsForBlockedAccess.length <= 50
     ) {
       content2 += logData.eventDescription + "\n";
       logsForBlockedAccess.push({ ...logData, campLocation: campLocation });
@@ -167,8 +172,7 @@ const generateRandomLogs = (number, campLocation) => {
     }
   );
 
-  sendEmail(logsForMail, "template_htwcber");
-  sendEmail(logsForBlockedAccess, "template_htwcber");
+  sendEmail(logsForMail, logsForBlockedAccess, "template_htwcber");
 
   return logs;
 };

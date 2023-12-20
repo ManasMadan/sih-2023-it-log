@@ -49,19 +49,19 @@ const event_description_templates = {
     "Software update: {software_name} updated to version {version}",
 
   "malware-detection":
-    "Malware detected: File '{file_path}' found on device '{device}', access revoked for {device}",
+    "Malware detected: File '{file_path}' found on device '{device}' access revoked for {device}",
   "permission-changes":
-    "User '{username}' tried changing permissions for file '{file_path}', access revoked",
+    "User '{username}' tried changing permissions for file '{file_path}' access revoked",
   "firewall-change":
-    "Firewall rule change: Port {port} opened for IP {source_ip}, access revoked",
+    "Firewall rule change: Port {port} opened for IP {source_ip} access revoked",
   "stuxnet-error":
-    "Device '{device}' contains Stuxnet, access revoked for {device}",
+    "Device '{device}' contains Stuxnet access revoked for {device}",
   "conficker-error":
-    "Device '{device}' contains Conficker, access revoked for {device}",
+    "Device '{device}' contains Conficker access revoked for {device}",
   "melissa-error":
-    "Device '{device}' contains Melissa, access revoked for {device}",
+    "Device '{device}' contains Melissa access revoked for {device}",
   "malware-download-attempt":
-    "User {username} tried downloading file containing {malware}, download revoked",
+    "User {username} tried downloading file containing {malware} download revoked",
 };
 
 const event_types = [
