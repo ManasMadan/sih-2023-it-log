@@ -8284,12 +8284,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x8df46c47f2AF74C577A14B3B30c242baCEA1d26F",
-      "transactionHash": "0xda62aa19d894d117b1a35bc6a058aa65dfc2a51773e5cf4a7c6931c45f2dcd54"
+      "address": "0x251aA59e78EB029a5f2Fc519f6B392161eFa3eA0",
+      "transactionHash": "0x674c0104818053af28d1c9ddce193a425bfc346f7cff6cddc1cc51c8fd9fbe4e"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-12-20T10:54:15.227Z",
+  "updatedAt": "2023-12-20T11:47:29.409Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

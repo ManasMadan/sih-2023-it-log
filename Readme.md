@@ -33,10 +33,6 @@ This website aims to address the need for a centralized system to analyze IT sys
 - Ayush Arora - 2022UIC3538
 - Devansh Behl - 2022UIC3582
 
-## Links
-
-- [GitHub](https://github.com/ManasMadan/sih-2023-it-log)- [Video Demonstration](https://drive.google.com/drive/folders/1n7UBtotE1InlDV6DVcQR3hvGHV81JIx_?usp=sharing)- [PPT](https://drive.google.com/file/d/1J5WRYSZTXzRoredXgbaNbi4J-ELXc43P/view?usp=sharing)
-
 ## Tech Stack
 
 - [Next JS](https://nextjs.org/)
@@ -91,6 +87,11 @@ This website aims to address the need for a centralized system to analyze IT sys
 - **User Authentication:** Implement secure user authentication and authorization mechanisms for API access.
 
 - **Data Visualization:** Offer APIs for data visualization tools to fetch real-time insights and generate reports.
+
+### Blocking IPs and Actions
+
+- **Blocks IP Address:** Based on the ML Model predictions the system blocks suspicious IP address
+- **Block Actions:** Based on the ML Model predictions the system restricts certain actions like downloading Malware, chaging Firewall rules etc.
 
 ### Machine Learning
 
